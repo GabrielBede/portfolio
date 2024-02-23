@@ -21,7 +21,7 @@
             <a href="">
                 <p>Sobre mim ↖</p>
             </a>
-            <a href="">
+            <a href="#projetos-design" onclick="scrollToSection('#projetos-design')">
                 <p>Projetos ↖</p>
             </a>
             <a href="">
@@ -67,7 +67,7 @@
 
     <br><br><br>
 
-    <h2>↗ PROJETOS - DESIGN 🎨</h2>
+    <h2 id="projetos-design">↗ PROJETOS - DESIGN 🎨</h2>
     <br><br><br>
     <section class="container-2">
         <div>
@@ -105,96 +105,88 @@
         </div>
     </section>
 
+    <br><br><br><br><br><br><br><br><br><br>
+
+    <h2 id="projetos-design">↗ PROJETOS - WEB 💻</h2>
+    <br><br><br>
+    <section class="container-2">
+        <div>
+            <div class="item item-1">
+                <div class="word w1">Anjos</div>
+                <div class="photo-project">
+                    <img class="photo" src="./img/bekind.png" alt="">
+                </div>
+                <div class="word w2">da Rua</div>
+            </div>
+
+            <div class="item item-2">
+                <div class="word w1">Be</div>
+                <div class="photo-project">
+                    <img class="photo" src="./img/signal.png" alt="">
+                </div>
+                <div class="word w2">Kind</div>
+            </div>
+
+            <div class="item item-3">
+                <div class="word w1">EduSys</div>
+                <div class="photo-project">
+                    <img class="photo" src="./img/etec.png" alt="">
+                </div>
+                <div class="word w2"></div>
+            </div>
+
+            <div class="item item-4">
+                <div class="word w1"></div>
+                <div class="photo-project">
+                    <img class="photo" src="./img/aline-melo.png" alt="">
+                </div>
+                <div class="word w2">Portfólio</div>
+            </div>
+        </div>
+    </section>
+
+    <br><br><br><br><br><br><br><br><br><br>
+
+    <h2 id="projetos-design">↗ PROJETOS - MOBILE 📱</h2>
+    <br><br><br>
+    <section class="container-2">
+        <div>
+            <div class="item item-1">
+                <div class="word w1">Be</div>
+                <div class="photo-project">
+                    <img class="photo" src="./img/bekind.png" alt="">
+                </div>
+                <div class="word w2">Kind</div>
+            </div>
+
+            <div class="item item-2">
+                <div class="word w1">Disney</div>
+                <div class="photo-project">
+                    <img class="photo" src="./img/signal.png" alt="">
+                </div>
+                <div class="word w2">Plus</div>
+            </div>
+
+            <div class="item item-3">
+                <div class="word w1">Planet</div>
+                <div class="photo-project">
+                    <img class="photo" src="./img/etec.png" alt="">
+                </div>
+                <div class="word w2">Quiz</div>
+            </div>
+
+            <div class="item item-4">
+                <div class="word w1">Aline</div>
+                <div class="photo-project">
+                    <img class="photo" src="./img/aline-melo.png" alt="">
+                </div>
+                <div class="word w2">Melo</div>
+            </div>
+        </div>
+    </section>
+
     <div class="cursor"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/gsap.min.js"></script>
-    <script>
-        const team = [
-            { role: "Full Stack Developer | Designer" },
-        ];
-
-        const cursor = document.querySelector('.cursor');
-        const cursorIcon = cursor.querySelector('i');
-
-        const cursorwidth = cursor.offsetWidth / 2;
-        const cursorHeight = cursor.offsetHeight / 2;
-
-        let currentSlide = 1;
-        const totalSlides = 4;
-
-        const updateCursorClass = (xPosition) => {
-            const halfPageWidth = window.innerWidth / 2;
-            if (xPosition > halfPageWidth) {
-                if (currentSlide < totalSlides) {
-                    cursorIcon.classList.remove('ph-arrow-left');
-                    cursorIcon.classList.add('ph-arrow-right');
-                    cursor.style.display = '';
-                } else {
-                    cursor.style.display = 'none';
-                }
-            } else {
-                if (currentSlide > 1) {
-                    cursorIcon.classList.remove('ph-arrow-right');
-                    cursorIcon.classList.add('ph-arrow-left');
-                    cursor.style.display = 'none';
-                } else {
-                    cursor.style.display = 'none';
-                }
-            }
-        };
-
-        document.addEventListener('mousemove', (e) => {
-            gsap.to(cursor, {
-                x: e.clientX - cursorwidth,
-                y: e.clientY - cursorHeight,
-                duration: 1,
-                ease: "power3.out"
-            });
-
-            updateCursorClass(e.clientX);
-        });
-
-        const updateInfo = (slideNumber) => {
-            const member = team[slideNumber - 1];
-            document.querySelector('.info .role').textContent = member.role;
-        };
-
-        const animateSlide = (slideNumber, reveal) => {
-            const marquee = document.querySelector(`.t-${slideNumber} .marquee-wrapper`);
-            const img = document.getElementById(`t-${slideNumber}`);
-            const clipPathValue = reveal ? 'polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)' : 'polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)';
-
-            gsap.to(marquee, { clipPath: clipPathValue, duration: 1, ease: "power4.out", delay: 0.3 });
-
-            gsap.to(img, { clipPath: clipPathValue, duration: 1, ease: "power4.out" });
-        };
-
-        updateInfo(currentSlide);
-
-        const handleRightClick = () => {
-            if (currentSlide < totalSlides) {
-                animateSlide(currentSlide + 1, true);
-                currentSlide++;
-                updateInfo(currentSlide);
-            }
-        };
-
-        const handleLeftClick = () => {
-            if (currentSlide > 1) {
-                animateSlide(currentSlide, false);
-                currentSlide--;
-                updateInfo(currentSlide);
-            }
-        };
-
-        document.addEventListener('click', (e) => {
-            const halfPageWidth = window.innerWidth / 2;
-            if (e.clientX > halfPageWidth) {
-                handleRightClick();
-            } else {
-                handleLeftClick();
-            }
-        });
-    </script>
 </body>
 
 </html>
